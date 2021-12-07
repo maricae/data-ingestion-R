@@ -27,7 +27,8 @@ n_row
 
 tuplas.values <- c('')
 
-# Abrir novamente um looping  somente para a
+# Abrir novamente um looping somente para a consulta
+# Colocar aspas nas colunas de strings
   
 for(i in 1:n_row) {
 
