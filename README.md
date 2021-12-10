@@ -13,7 +13,7 @@ library(DBI)
 Neste caso, usei um script próprio pro MySQL, se estiver usando outra ferramente, pesquise qual pacote é necessário.
 Insira o nome da base de dados, servidor, user, senha e porta.
 ```
-braip_homologacao <- dbConnect(MySQL(),
+nome_da_conexao <- dbConnect(MySQL(),
                                dbname="***",
                                host="***",
                                user="***",
@@ -33,18 +33,15 @@ download.file(url, destfile1)
 tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-8")
 tabela["id"] <- tibble::rowid_to_column(tabela, "id") # Criando coluna com id
 ```
-### 4. 
+### 4. Criando Consulta
+Agora será necessário criar um insert (linguagem SQL). Para acelerar o processo de ingestão, a estrutura dos dados será feita em uma variável e depois será criada uma nova variável com a concatenação com "insert into". Além disso, essa parte também será feita em looping com o número de linhas. Lembrando que as coluna de strings devem estar entre aspas.
+```
 n_row <- nrow(tabela) 
-n_row
 
 tuplas.values <- c('')
 
-# Abrir novamente um looping, somente para a consulta
-# Lembrar de colocar aspas nas colunas de strings
-  
 for(i in 1:n_row) {
 
-  
 tuplas.values <- paste( tuplas.values,
                  "('",trimws(tabela[i,1]),"'",
                  ",", tabela[i,2],",",
@@ -56,9 +53,16 @@ tuplas.values <- paste( tuplas.values,
                 sep='')
 }
 
-# Enviar o insert para o banco de dados
 query <- paste("INSERT IGNORE INTO tabela VALUES", substring(tuplas.values,1, nchar(tuplas.values)-1))
-dbGetQuery({dbname}, query)
-
-Sys.sleep(3600) # Atualizar a cada 3600 segundos
+```
+### 5. Enviando os Dados
+Enviando a consulta elaborada no passo 4 para o banco de dados MySQL, utlizando o nome da conexão criada no passo 2 e a concatenação feita no passo a cima.
+```
+dbGetQuery(nome_da_conexao, query)
+```
+### 6. Limitando Looping
+Colocando os dados para atualizar a cada 3600 segundos e finalizando fechando o primeiro *for*
+```
+Sys.sleep(3600)
 }
+```
