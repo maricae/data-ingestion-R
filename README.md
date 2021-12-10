@@ -3,12 +3,12 @@ A ingestão de dados é o transporte de dados de diferentes fontes para um meio 
 
 ### 1. Instalando os Pacotes 
 Instale (caso necessário) e faça a leitura dos pacotes
-``library(readr)
+```library(readr)
 library(RMySQL)
-library(DBI)``
+library(DBI)```
 
 ### 2. Crie a conexão com seu banco de dados
-``
+```
 braip_homologacao <- dbConnect(MySQL(),
                                dbname="***",
                                host="***",
@@ -16,7 +16,7 @@ braip_homologacao <- dbConnect(MySQL(),
                                password= "***",
                                port = ***
 )
-``
+```
 # Abrir looping
 
 for(i in 1:10) {
