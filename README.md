@@ -2,7 +2,7 @@
 A ingestão de dados é o transporte de dados de diferentes fontes para um meio de armazenamento onde podem ser acessados, usados e analisados por uma organização. O destino normalmente é um data warehouse, data mart, banco de dados ou armazenamento de documentos. Neste caso, tranferi dados de uma planilha do Google Drive para um Data Warehouse no MySQL utilizando um script em R. Também acrescentei um looping para o script rodar a cada 1 hora.
 
 ### 1. Instalando os Pacotes 
-Instale (caso necessário) e faça a leitura dos pacotes
+Instale (caso necessário) e faça a leitura dos pacotes:
 ```
 library(readr)
 library(RMySQL)
