@@ -3,12 +3,15 @@ A ingestão de dados é o transporte de dados de diferentes fontes para um meio 
 
 ### 1. Instalando os Pacotes 
 Instale (caso necessário) e faça a leitura dos pacotes
-```library(readr)
+```
+library(readr)
 library(RMySQL)
 library(DBI)
 ```
 
 ### 2. Crie a conexão com seu banco de dados
+Neste caso, usei um script próprio pro MySQL, se estiver usando outra ferramente, pesquise qual pacote é necessário.
+Insira o nome da base de dados, servidor, user, senha e porta.
 ```
 braip_homologacao <- dbConnect(MySQL(),
                                dbname="***",
@@ -18,17 +21,18 @@ braip_homologacao <- dbConnect(MySQL(),
                                port = ***
 )
 ```
-# Abrir looping
-
+# 3. Baixando Dados
+Com o objetivo de deixar o script rodando várias vezes, o looping é aberto na parte de fazer o download da planilha, lembrando que ela será alimentada ao longo do dia. Com isso, crie uma variável com o link direto de download e uma variável indicando qual diretório será direcionado o arquivo. Após isso, faça o download do arquivo, insira a tabela no ambiente do RStudio e acrescente uma coluna de id (caso necessário).
+```
 for(i in 1:10) {
 
-url1 <- "url do download automatico do seu arquivo"
-destfile1 <- "diretório do arquivo será baixado"
-download.file(url1, destfile1) # baixar arquivo no diretório selecionado
-tabela <- read.csv("diretório do arquivo", sep=",", header=FALSE, encoding="utf-8") # Criando variável com separador, sem cabeçalho e aplicando enconding
-colnames(tabela) <- c("motivo", "ticket", "data", "venda_chave", "produto_chave") # Dando nome às colunas
+url <- "url do download automatico do seu arquivo"
+destfile <- "diretório do arquivo será baixado"
+download.file(url, destfile1)
+tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-8") # Criando variável com separador, com cabeçalho e aplicando enconding
 tabela["id"] <- tibble::rowid_to_column(tabela, "id") # Criando coluna com id
-
+```
+### 4. 
 n_row <- nrow(tabela) 
 n_row
 
