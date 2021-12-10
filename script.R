@@ -27,8 +27,8 @@ n_row
 
 tuplas.values <- c('')
 
-# Abrir novamente um looping somente para a consulta
-# Colocar aspas nas colunas de strings
+# Abrir novamente um looping, somente para a consulta
+# Lembrar de colocar aspas nas colunas de strings
   
 for(i in 1:n_row) {
 
@@ -44,6 +44,7 @@ tuplas.values <- paste( tuplas.values,
                 sep='')
 }
 
+# Enviar o insert para o banco de dados
 query <- paste("INSERT IGNORE INTO tabela VALUES", substring(tuplas.values,1, nchar(tuplas.values)-1))
 dbGetQuery({dbname}, query)
 
