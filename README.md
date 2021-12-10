@@ -34,7 +34,7 @@ tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-
 tabela["id"] <- tibble::rowid_to_column(tabela, "id") # Criando coluna com id
 ```
 ### 4. Criando Consulta
-Agora será necessário criar um insert (linguagem SQL). Para acelerar o processo de ingestão, a estrutura dos dados será feita em uma variável e depois será criada uma nova variável com a concatenação com "insert into". Além disso, essa parte também será feita em looping com o número de linhas. Lembrando que as coluna de strings devem estar entre aspas.
+Agora será necessário criar um insert (linguagem SQL). Para acelerar o processo de ingestão, a estrutura dos dados será feita em uma variável e depois será criada uma nova variável com a concatenação com "insert into". Além disso, essa parte também será feita em looping com o número de linhas. Lembrando que as colunas de strings devem estar entre aspas.
 ```
 n_row <- nrow(tabela) 
 
