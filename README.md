@@ -23,13 +23,14 @@ braip_homologacao <- dbConnect(MySQL(),
 ```
 # 3. Baixando Dados
 Com o objetivo de deixar o script rodando várias vezes, o looping é aberto na parte de fazer o download da planilha, lembrando que ela será alimentada ao longo do dia. Com isso, crie uma variável com o link direto de download e uma variável indicando qual diretório será direcionado o arquivo. Após isso, faça o download do arquivo, insira a tabela no ambiente do RStudio e acrescente uma coluna de id (caso necessário).
+Obs: O looping será fechado no final deste script.
 ```
 for(i in 1:10) {
 
 url <- "url do download automatico do seu arquivo"
 destfile <- "diretório do arquivo será baixado"
 download.file(url, destfile1)
-tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-8") # Criando variável com separador, com cabeçalho e aplicando enconding
+tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-8")
 tabela["id"] <- tibble::rowid_to_column(tabela, "id") # Criando coluna com id
 ```
 ### 4. 
