@@ -61,7 +61,7 @@ Enviando a consulta elaborada no passo 4 para o banco de dados MySQL, utlizando 
 dbGetQuery(nome_da_conexao, query)
 ```
 ### 6. Limitando Looping
-Colocando os dados para atualizar a cada 3600 segundos e finalizando fechando o primeiro *for*
+Colocando os dados para atualizar a cada 3600 segundos e, finalizando, fechando o primeiro *for*
 ```
 Sys.sleep(3600)
 }
