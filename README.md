@@ -21,7 +21,7 @@ nome_da_conexao <- dbConnect(MySQL(),
                                port = ***
 )
 ```
-# 3. Baixando Dados
+### 3. Baixando Dados
 Com o objetivo de deixar o script rodando várias vezes, o looping é aberto na parte de fazer o download da planilha, lembrando que ela será alimentada ao longo do dia. Com isso, crie uma variável com o link direto de download e uma variável indicando qual diretório será direcionado o arquivo. Após isso, faça o download do arquivo, insira a tabela no ambiente do RStudio e acrescente uma coluna de id (caso necessário).
 Obs: O looping será fechado no final deste script.
 ```
