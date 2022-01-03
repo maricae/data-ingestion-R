@@ -31,7 +31,7 @@ url <- "url do download automatico do seu arquivo"
 destfile <- "diretório do arquivo será baixado"
 download.file(url, destfile1)
 tabela <- read.csv("diretório do arquivo", sep=",", header=TRUE, encoding="utf-8")
-tabela["id"] <- tibble::rowid_to_column(tabela, "id") # Criando coluna com id
+tabela["id"] <- tibble::rowid_to_column(tabela, "id")
 ```
 ### 4. Criando Consulta
 Agora será necessário criar um insert (linguagem SQL). Para acelerar o processo de ingestão, a estrutura dos dados será feita em uma variável e depois será criada uma nova variável com a concatenação com "insert into". Além disso, essa parte também será feita em looping com o número de linhas. Lembrando que as colunas de strings devem estar entre aspas.
